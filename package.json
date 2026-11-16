@@ -1,0 +1,19 @@
+{
+  "name": "triviabook",
+  "version": "1.0.0",
+  "description": "Trivia Book API (Node/Express + Neon Postgres)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node db/seed.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "pg": "^8.23.1"
+  }
+}
