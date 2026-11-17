@@ -52,7 +52,7 @@ async function getQuestionsByTopic(req, res) {
             }
         }
 
-        const quesiotns = await triviaModel.getQuesitonsByTopic(topic, { limit, difficulty });
+        const questions = await triviaModel.getQuesitonsByTopic(topic, { limit, difficulty });
         res.json(questions);
 
     } catch (err) {
@@ -98,7 +98,7 @@ async function checkAnswer(req, res) {
         if (id === undefined || id === null || id === '') missing.push('id');
         if (guess === undefined || guess === null) missing.push('guess');
         if (missing.length > 0) {
-            return res.status(400).json({ error: `Missing requiredfield(s): ${missing.join(', ')}.`});
+            return res.status(400).json({ error: `Missing required field(s): ${missing.join(', ')}.`});
         }
 
         // return error if input questionId is not an expected value
@@ -121,7 +121,7 @@ async function checkAnswer(req, res) {
 
         // return an error message to user
         console.error(err);
-        res.status(500).json({ error: 'Something went wrong while checking the answer.' }))
+        res.status(500).json({ error: 'Something went wrong while checking the answer.' });
 
     }
 }
