@@ -60,10 +60,30 @@ async function getQuestionById(id) {
 
 }
 
+// creates a new topic in the database and returns the created topic object with id and name
+async function createTopic(name) {
+
+    const result = await pool.query('INSERT INTO topics (name) VALUES (LOWER($1)) RETURNING id, name', [name]);
+    return result.rows[0];
+    
+}
+
+// creates a new question in the database and returns the created question object with id, topic_id, question, answer, and difficulty
+async function addQuestion(topicId, question, answer, difficulty) {
+
+    const result = await pool.query('INSERT INTO questions (topic_id, question, answer, difficulty) VALUES ($1, $2, $3, $4) RETURNING *', [topicId, question, answer, difficulty]);
+    return result.rows[0];
+
+}
+
+
+
 module.exports = {
     getAllTopics,
     getTopicByName,
     getQuestionsByTopic,
     getRandomQuestion,
-    getQuestionById
+    getQuestionById,
+    createTopic,
+    addQuestion
 };
