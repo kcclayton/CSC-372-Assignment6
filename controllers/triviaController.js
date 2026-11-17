@@ -52,7 +52,7 @@ async function getQuestionsByTopic(req, res) {
             }
         }
 
-        const questions = await triviaModel.getQuesitonsByTopic(topic, { limit, difficulty });
+        const questions = await triviaModel.getQuestionsByTopic(topic, { limit, difficulty });
         res.json(questions);
 
     } catch (err) {
@@ -98,7 +98,7 @@ async function checkAnswer(req, res) {
         if (id === undefined || id === null || id === '') missing.push('id');
         if (guess === undefined || guess === null) missing.push('guess');
         if (missing.length > 0) {
-            return res.status(400).json({ error: `Missing required field(s): ${missing.join(', ')}.`});
+            return res.status(400).json({ error: `Missing required field(s): ${missing.join(', ')}.` });
         }
 
         // return error if input questionId is not an expected value
@@ -113,8 +113,8 @@ async function checkAnswer(req, res) {
             return res.status(404).json({ error: `No question found with id ${questionId}.` });
         }
 
-        // tell a user whether their guess was the correct answer
-        const correct = String(guess).trim.toLowerCase() === question.answer.trim().toLowerCase();
+        // tell a user whether their guess matches the correct answer
+        const correct = String(guess).trim().toLowerCase() === question.answer.trim().toLowerCase();
         res.json({ id: questionId, guess, correct, answer: question.answer });
 
     } catch (err) {
@@ -142,7 +142,7 @@ async function addQuestion(req, res) {
         }
 
         // check that input difficulty is valid
-        const level = difficulty.trim.toLowerCase();
+        const level = difficulty.trim().toLowerCase();
         if (!VALID_DIFFICULTIES.includes(level)) {
             return res.status(400).json({ error: 'Difficulty must be easy, medium, or hard.' });
         }
