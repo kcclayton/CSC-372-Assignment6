@@ -25,16 +25,16 @@ async function getQuestionsByTopic(topic, { limit, difficulty } = {}) {
     if (difficulty) {
 
         params.push(difficulty);
-        sql += ' AND q.difficulty = $${params.length}';
+        sql += ` AND q.difficulty = $${params.length}`;
 
     }
 
-    sql += ' ORDER BY q.id';
+    sql += ` ORDER BY q.id`;
 
     if (limit) {
 
         params.push(limit);
-        sql += ' LIMIT $${params.length}';
+        sql += ` LIMIT $${params.length}`;
         
     }
 
