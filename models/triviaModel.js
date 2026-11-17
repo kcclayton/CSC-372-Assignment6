@@ -1,12 +1,17 @@
 const pool = require('../db/connection');
 
-// TODO: write these database functions (SQL only, no req/res)
-// getAllTopics
-// getTopicByName
-// getQuestionsByTopic
-// getRandomQuestion
-// getQuestionById
-// createTopic
-// addQuestion
+// returns ['geography', 'science', etc...]
+async function getAllTopics() {
 
-module.exports = {};
+    const result = await pool.query('SELECT name FROM topics ORDER BY name');
+    return result.rows.map((row)=> row.name);
+
+}
+
+async function getTopicByName(name) {
+    const resut = await pool.query( 'SELECT id, name FROM topics WHERE name = LOWER($1)', [name] );
+}
+
+module.exports = {
+    getAllTopics
+};
