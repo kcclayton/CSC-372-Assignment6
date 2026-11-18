@@ -1,6 +1,7 @@
 # Trivia Book API
 
 A Node.js/Express REST API for trivia questions, backed by a Neon Postgres database. It follows a model–controller–router architecture.
+Try it out [here](https://csc-372-assignment6.onrender.com/triviabook/topic/science?difficulty=easy&limit=1)!
 
 ## Tech stack
 
